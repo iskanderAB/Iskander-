@@ -3,37 +3,56 @@
 {% block title %}Clean index{% endblock %}
 
 {% block body %}
-    <h1>Clean index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Circuit_name</th>
-                <th>Discription</th>
-                <th>Image</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for clean in cleans %}
-            <tr>
-                <td>{{ clean.id }}</td>
-                <td>{{ clean.circuitName }}</td>
-                <td>{{ clean.discription }}</td>
-                <td>{{ clean.image }}</td>
-                <td>
-                    <a href="{{ path('clean_show', {'id': clean.id}) }}">show</a>
-                    <a href="{{ path('clean_edit', {'id': clean.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('clean_new') }}">Create new</a>
+    <div class="container" style="padding:20px;padding-bottom: 100px">
+        <div class="card" style="width: 100%;">
+            <div class="card-header">
+                <h1 style="float: left">Cercuits</h1>
+                <a href="{{ path('clean_new') }}" class="btn btn-info btn-lg" style="float: right">
+                    <span class="glyphicon glyphicon-plus"> Plus</span>
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Circuit_name</th>
+                            <th>Discription</th>
+                            <th>Image</th>
+                            <th>actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for clean in cleans %}
+                            <tr>
+                                <td>{{ clean.id }}</td>
+                                <td>{{ clean.circuitName }}</td>
+                                <td>{{ clean.discription }}</td>
+                                <td><img src="/uploads/{{ clean.image }}" alt="clean image " class="image"></td>
+                                <td>
+                                    <div class="row">
+                                        <form method="post" action="{{ path('clean_delete', {'id': clean.id}) }}"
+                                              onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="_token"
+                                                   value="{{ csrf_token('delete' ~ clean.id) }}">
+                                            <button class="btn"><i class="fa fa-trash class-color-red"></i></button>
+                                        </form>
+                                        <a href="{{ path('clean_edit', {'id': clean.id}) }}" class="btn"><i
+                                                    class="fa fa-edit class-color-green"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="5">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

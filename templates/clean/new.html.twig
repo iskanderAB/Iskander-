@@ -3,9 +3,14 @@
 {% block title %}New Clean{% endblock %}
 
 {% block body %}
-    <h1>Create new Clean</h1>
-
+<div class="container" style="padding: 20px;padding-bottom: 100px">
+    <div class="card"  style="width: 100%;">
+        <div class="card-header">
+            <h1>Ajouter circuit </h1>
+        </div>
+        <div class="card-body">
     {{ include('clean/_form.html.twig') }}
-
-    <a href="{{ path('clean_index') }}">back to list</a>
+        </div>
+    </div>
+</div>
 {% endblock %}

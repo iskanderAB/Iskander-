@@ -6,6 +6,7 @@ use App\Entity\Clean;
 use App\Form\CleanType;
 use App\Repository\CleanRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -35,13 +36,26 @@ class CleanController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $File = $form->get('image')->getData();
+            if ($File) {
+                $originalFilename = pathinfo($File->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $originalFilename ;
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $File->guessExtension();
+                try {
+                    $File->move(
+                        $this->getParameter('diract'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    dd("es2l iskander AB  ") ;
+                }
+            }
+            $clean->setImage($newFilename);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($clean);
             $entityManager->flush();
-
             return $this->redirectToRoute('clean_index');
         }
-
         return $this->render('clean/new.html.twig', [
             'clean' => $clean,
             'form' => $form->createView(),

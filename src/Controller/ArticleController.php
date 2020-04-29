@@ -17,6 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/article")
+ *
  */
 class ArticleController extends AbstractController
 {  
@@ -46,18 +47,13 @@ class ArticleController extends AbstractController
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $brochureFile = $form->get('fileName')->getData();
-            // this condition is needed because the 'brochure' field is not required
-            // so the PDF file must be processed only when a file is uploaded
-            if ($brochureFile) {
-                $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
-                // this is needed to safely include the file name as part of the URL
+            $File = $form->get('fileName')->getData();
+            if ($File) {
+                $originalFilename = pathinfo($File->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFilename = $originalFilename ;
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $brochureFile->guessExtension();
-
-                // Move the file to the directory where brochures are stored
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $File->guessExtension();
                 try {
-                    $brochureFile->move(
+                    $File->move(
                         $this->getParameter('diract'),
                         $newFilename
                     );
@@ -65,9 +61,6 @@ class ArticleController extends AbstractController
                    dd("es2l iskander ") ;
                 }
             }
-
-                // updates the 'brochureFilename' property to store the PDF file name
-                // instead of its contents
             $article->setFileName($newFilename);
             $article->setUploadAt(new \DateTime);
             $entityManager = $this->getDoctrine()->getManager();
@@ -101,18 +94,18 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $brochureFile = $form->get('fileName')->getData();
+            $File = $form->get('fileName')->getData();
             // this condition is needed because the 'brochure' field is not required
             // so the PDF file must be processed only when a file is uploaded
-            if ($brochureFile) {
-                $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
+            if ($File) {
+                $originalFilename = pathinfo($File->getClientOriginalName(), PATHINFO_FILENAME);
                 // this is needed to safely include the file name as part of the URL
                 $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $brochureFile->guessExtension();
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $File->guessExtension();
 
                 // Move the file to the directory where brochures are stored
                 try {
-                    $brochureFile->move(
+                    $File->move(
                         $this->getParameter('diract'),
                         $newFilename
                     );

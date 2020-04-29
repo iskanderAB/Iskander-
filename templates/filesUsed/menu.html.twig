@@ -29,7 +29,6 @@
     </nav>
 
     <div id="wrapper">
-
         <!-- Sidebar -->
         <ul class="sidebar navbar-nav">
             <li class="nav-item active">
@@ -42,13 +41,19 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ path("article_new") }}" >
                     <i class="far fa-plus-square"></i>
-                    <span>ajouter article</span>
+                    <span>Ajouter article</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="allo_mairie.html">
-                    <i class="fas fa-user-plus"></i>
-                    <span>ALLO Mairie</span>
+                <a class="nav-link" href="{{ path("clean_new") }}" >
+                    <i class="far fa-plus-square"></i>
+                    <span>Ajouter circuit</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path("contact_new") }}" >
+                    <i class="far fa-plus-square"></i>
+                    <span>Ajouter contact</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -61,6 +66,18 @@
                 <a class="nav-link" href="{{ path('article_index') }}" >
                     <i class="fas fa-table"></i>
                     <span>tous les articles</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('clean_index') }}" >
+                    <i class="fas fa-table"></i>
+                    <span>tous les circuits</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('contact_index') }}" >
+                    <i class="fas fa-table"></i>
+                    <span>tous les contacts</span>
                 </a>
             </li>
         </ul>

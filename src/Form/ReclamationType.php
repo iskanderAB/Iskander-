@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Reclamation;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,7 +17,9 @@ class ReclamationType extends AbstractType
             ->add('prenom')
             ->add('sujet')
             ->add('message')
-            ->add('fileName')
+            ->add('fileName',FileType::class,array(
+                'mapped'=>false
+            ))
         ;
     }
 
