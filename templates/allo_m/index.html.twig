@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Allo{% endblock %}
+
+{% block body %}
+<div id="content-wrapper">
+
+
+            <div class="container-fluid">
+
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="index.html">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item active">Overview</li>
+                </ol>
+
+                <!-- Icon Cards-->
+
+         {% if isUpdatedData %}
+          <div style="text-align:center" class="alert alert-success" role="alert">
+            données mis à jours avec success
+          </div>    
+        {% endif %}
+
+
+                <!-- DataTables Example -->
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fas fa-table"></i> ALLO Mairie</div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+
+                            <div class="container">
+                                <div class="card card-register mx-auto mt-3">
+                                    <div class="text-center card-header">Ajouter des numero  </div>
+                                     <div class="card-body">
+                                        <form action="{{ path('alloInfo') }}" method="POST">
+                                            <div class="form-group">
+                            
+                                                        <div class="form-label-group">
+                                                            <input type="text" id="Nom_responsable" name="Nom_responsable" value="{{ information["infoAllo-nom"]}}" class="form-control" placeholder="Titre *" required="required" autofocus="autofocus"/>
+                                                            <label for="Nom_responsable">Nom du responsable  *</label>
+                                                        </div>
+                                            </div>
+                                            <div class="form-group">                                                    
+                                                        <div class="form-label-group">
+                                                            <input type="text" id="Poste" name="Poste" class="form-control" value="{{ information["infoAllo-post"]}}" placeholder="sujet *" required="required"/>
+                                                            <label for="Poste">Poste du responsable  *</label>
+                                                        </div>
+                                                   
+                                                
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-label-group">
+                                                    <input type="number" id="TEL" name="TEL" class="form-control" value="{{ information["infoAllo-tel"]}}" placeholder="Article *" required="required"/>
+                                                    <label for="TEL">TEL ou FIX *</label>
+                                                </div>
+                                            </div>        
+                                            <button type="submit" class="btn btn-primary btn-block">Ajouter numero</button>
+                                            <small>les champs avec * sont obligatoire</small>
+                                        </form>
+                            
+                                    </div>
+                                </div>
+                            
+                            
+                            </div>
+
+                        </div>
+                    </div>
+                 <div class="card-footer small text-muted">dernier Modification : {{ information["date-up"]|date("d-m-y H:i") }}</div>
+                
+
+
+                </div>
+            </div>
+{% endblock %}

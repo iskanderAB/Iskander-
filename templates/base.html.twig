@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Mairie!{% endblock %}</title>
+        {% block stylesheets %}
+            {% include "filesUsed/linkes.html.twig" %}
+        {% endblock %}
+    </head>
+    <body>
+        {% block menu%}
+        {% include "filesUsed/menu.html.twig" %}
+        {% endblock %}
+        {% block body %}{% endblock %}
+        {% block footer %}
+            {% include "filesUsed/footer.html.twig" %}
+        {% endblock %}
+        {% block javascripts %}
+             {% include "filesUsed/scripts.html.twig" %}
+        {% endblock %}
+    </body>
+</html>

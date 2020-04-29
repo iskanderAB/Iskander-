@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Article{% endblock %}
+
+{% block body %}
+ <div class="container" style="padding: 20px;padding-bottom: 100px">
+    <div class="card"  style="width: 100%;">
+        <div class="card-header">
+            <h1>Create new Article</h1>
+        </div>
+        <div class="card-body">
+            {{ include('article/_form.html.twig') }}
+        </div>
+    </div>
+ </div>
+{% endblock %}

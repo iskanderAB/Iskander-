@@ -1,0 +1,36 @@
+{{ form_start(form) }}
+<div class="form-row">
+    <div class="form-group col-md-6">
+        {{ form_row(form.sujet,{"attr":{"typ":"text",'class':'form-control','id':'inputEmail4','placeholder':'Sujet'}})}}
+    </div>
+    <div class="form-group col-md-6">
+        {{ form_row(form.titre,{"attr":{"typ":"text",'class':'form-control','id':'inputEmail4','placeholder':'Titre'}})}}
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group col-md-12">
+        {{ form_row(form.description,{"attr":{"typ":"text",'class':'form-control','id':'inputEmail4','placeholder':'Description'}})}}
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        {{ form_row(form.datedebut,{"attr":{"typ":"date",'id':'inputEmail4'}})}}
+    </div>
+    <div class="form-group col-md-6">
+        {{ form_row(form.datefin,{"attr":{"typ":"date",'id':'inputEmail4'}})}}
+    </div>
+</div>
+<div class="form-group">
+    <div class="form-check">
+        {{ form_row(form.expiration,{"attr":{"typ":"checkbox",'class':'form-check-input','id':'gridCheck'}})}}
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group col-md-12">
+        <div class="custom-file">
+        {{ form_row(form.fileName) }}
+        </div>
+    </div>
+</div>
+    <button class="btn btn-success" style="float: left">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

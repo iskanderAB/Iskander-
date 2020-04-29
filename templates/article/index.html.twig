@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article index{% endblock %}
+
+{% block body %}
+    <div class="container" style="padding:20px;padding-bottom: 100px">
+        <div class="card" style="width: 90%;">
+            <div class="card-header">
+                <h1 style="float: left">Articles</h1>
+                <a href="{{ path('article_new') }}" class="btn btn-info btn-lg" style="float: right">
+                    <span class="glyphicon glyphicon-plus"> Plus</span>
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="example" class="table  table-hover " style="width:100%">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Titre</th>
+                            <th>Sujet</th>
+                            <th>Description</th>
+                            <th>UploadAt</th>
+                            <th>Datedebut</th>
+                            <th>Datefin</th>
+                            <th>Expiration</th>
+                            <th>FileName</th>
+                            <th>actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for article in articles %}
+                            <tr>
+                                <td>{{ article.id }}</td>
+                                <td>{{ article.titre }}</td>
+                                <td>{{ article.sujet }}</td>
+                                <td>{{ article.description }}</td>
+                                <td>{{ article.uploadAt ? article.uploadAt|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>{{ article.datedebut ? article.datedebut|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>{{ article.datefin ? article.datefin|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>{{ article.expiration ? 'Yes' : 'No' }}</td>
+                                <td><img src="/uploads/{{ article.fileName }}" alt="article image " class="image"></td>
+                                <td>
+                                    <div class="row">
+                                        <form method="post" action="{{ path('article_delete', {'id': article.id}) }}"
+                                              onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="_token"
+                                                   value="{{ csrf_token('delete' ~ article.id) }}">
+                                            <button class="btn"><i class="fa fa-trash class-color-red"></i></button>
+                                        </form>
+                                        <a href="{{ path('article_edit', {'id': article.id}) }}" class="btn"><i
+                                                    class="fa fa-edit class-color-green"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="10">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clean{% endblock %}
+
+{% block body %}
+    <h1>Clean</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ clean.id }}</td>
+            </tr>
+            <tr>
+                <th>Circuit_name</th>
+                <td>{{ clean.circuitName }}</td>
+            </tr>
+            <tr>
+                <th>Discription</th>
+                <td>{{ clean.discription }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ clean.image }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('clean_index') }}">back to list</a>
+
+    <a href="{{ path('clean_edit', {'id': clean.id}) }}">edit</a>
+
+    {{ include('clean/_delete_form.html.twig') }}
+{% endblock %}

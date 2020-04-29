@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clean index{% endblock %}
+
+{% block body %}
+    <h1>Clean index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Circuit_name</th>
+                <th>Discription</th>
+                <th>Image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for clean in cleans %}
+            <tr>
+                <td>{{ clean.id }}</td>
+                <td>{{ clean.circuitName }}</td>
+                <td>{{ clean.discription }}</td>
+                <td>{{ clean.image }}</td>
+                <td>
+                    <a href="{{ path('clean_show', {'id': clean.id}) }}">show</a>
+                    <a href="{{ path('clean_edit', {'id': clean.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('clean_new') }}">Create new</a>
+{% endblock %}
