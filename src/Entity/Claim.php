@@ -15,12 +15,10 @@ class Claim
      * @ORM\Column(type="integer")
      */
     private $id;
-
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $first_name;
-
     /**
      * @ORM\Column(type="string", length=255)
      */

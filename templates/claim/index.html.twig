@@ -1,20 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ClaimController!{% endblock %}
+{% block title %}Claim index{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/iskander/Documents/Works/mairie/src/Controller/ApiController.php'|file_link(0) }}">src/Controller/ClaimController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/iskander/Documents/Works/mairie/templates/claim/index.html.twig'|file_link(0) }}">templates/claim/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <div class="container" style="padding:20px;padding-bottom: 100px">
+        <div class="card" style="width: 90%;">
+            <div class="card-header">
+                <h1 style="float: left">Reclamations</h1>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table  id="example" class="table  table-hover " style="width:100%">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>First_name</th>
+                            <th>Last_name</th>
+                            <th>Mail</th>
+                            <th>Tel</th>
+                            <th>Content</th>
+                            <th>Image</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for claim in claims %}
+                            <tr>
+                                <td>{{ claim.id }}</td>
+                                <td>{{ claim.firstName }}</td>
+                                <td>{{ claim.lastName }}</td>
+                                <td>{{ claim.mail }}</td>
+                                <td>{{ claim.tel }}</td>
+                                <td>{{ claim.content }}</td>
+                                <td><img src="/uploads/{{ claim.image }}" alt="Calim image " class="image"></td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="8">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
