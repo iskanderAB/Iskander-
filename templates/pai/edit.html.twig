@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Pai{% endblock %}
+
+{% block body %}
+    <h1>Edit Pai</h1>
+
+    {{ include('pai/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('pai_index') }}">back to list</a>
+
+    {{ include('pai/_delete_form.html.twig') }}
+{% endblock %}

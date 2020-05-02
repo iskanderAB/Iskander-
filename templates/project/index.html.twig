@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Project index{% endblock %}
+
+{% block body %}
+    <div class="container" style="padding:20px;padding-bottom: 100px">
+        <div class="card" style="width: 90%;">
+            <div class="card-header">
+                <h1 style="float: left">Articles</h1>
+                <a href="{{ path('project_new') }}" class="btn btn-info btn-lg" style="float: right">
+                    <span class="glyphicon glyphicon-plus"> Plus</span>
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Title</th>
+                            <th>Discription</th>
+                            <th>File</th>
+                            <th>Start_date</th>
+                            <th>End_date</th>
+                            <th>Status</th>
+                            <th>actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for project in projects %}
+                            <tr>
+                                <td>{{ project.id }}</td>
+                                <td>{{ project.title }}</td>
+                                <td>{{ project.discription }}</td>
+                                <td><img src="/uploads/{{ project.file }}" alt="article image " class="image"></td>
+                                <td>{{ project.startDate ? project.startDate|date('Y-m-d') : '' }}</td>
+                                <td>{{ project.endDate ? project.endDate|date('Y-m-d') : '' }}</td>
+                                <td>{{ project.status ? 'Yes' : 'No' }}</td>
+                                <td>
+                                    <a href="{{ path('project_show', {'id': project.id}) }}">show</a>
+                                    <a href="{{ path('project_edit', {'id': project.id}) }}">edit</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="8">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

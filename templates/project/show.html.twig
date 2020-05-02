@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Project{% endblock %}
+
+{% block body %}
+<div class="container" style="padding: 20px;padding-bottom: 100px">
+    <div class="card" style="width: 100%;">
+        <div class="card-header">
+            <h1>Projet {{ project.title }}</h1>
+        </div>
+        <div class="card-body">
+    <table class="table">
+        <tbody>
+        <tr>
+            <td colspan="2"><img src="/uploads/{{ project.file }}" alt="article image" class="imageProfiel"></td>
+
+            <td><strong> Description : </strong> {{ project.discription }}</td>
+        </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ project.title }}</td>
+            </tr>
+            <tr>
+                <th>Start_date</th>
+                <td>{{ project.startDate ? project.startDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>End_date</th>
+                <td>{{ project.endDate ? project.endDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ project.status ? 'Yes' : 'No' }}</td>
+            </tr>
+        <tr>
+            <th>
+                <div class="row">
+                    <div>{{ include('project/_delete_form.html.twig') }}</div>
+                    <div style="margin-left: 1rem"><a  class="btn btn-sm btn-success" style="width: 6rem" href="{{ path('project_edit', {'id': project.id}) }}">edit</a></div>
+                </div>
+            </th>
+        </tr>
+        </tbody>
+    </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

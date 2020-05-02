@@ -8,6 +8,7 @@ use App\Entity\Clean;
 use App\Repository\ClaimRepository;
 use App\Repository\CleanRepository;
 use App\Repository\ContactRepository;
+use App\Repository\ProjectRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -67,6 +68,22 @@ class ApiController extends AbstractController
         try {
             $clean = $cleanRepository->findAll();
             return $this->json($clean,200, []);
+        }catch (NotEncodableValueException $exception){
+            return $this->json([
+                'status' => 400,
+                'message' => $exception->getMessage()
+            ],400);
+        }
+    }
+
+
+    /**
+     * @Route("/project",name="getProject",methods={"GET"})
+     */
+    public function getProject (ProjectRepository $projectRepository){
+        try {
+            $project = $projectRepository->findAll();
+            return $this->json($project,200, [],["groups"=>"project_read"]);
         }catch (NotEncodableValueException $exception){
             return $this->json([
                 'status' => 400,

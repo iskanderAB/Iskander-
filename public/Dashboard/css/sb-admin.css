@@ -10916,6 +10916,10 @@ body.sidebar-toggled footer.sticky-footer {
   width: 5rem;
   height: 5rem;
 }
+.imageProfiel{
+  width: 30rem;
+  height: 20rem;
+}
 /*.left-div{
   float: left;
   color :red ;
