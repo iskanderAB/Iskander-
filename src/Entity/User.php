@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -23,7 +24,8 @@ class User implements UserInterface
     private $username;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="json")
+     * @Groups({"Read"})
      */
     private $roles = [];
 
