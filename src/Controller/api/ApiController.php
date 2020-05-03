@@ -63,7 +63,7 @@ class ApiController extends AbstractController
         }
     }
     /**
-     * @Route("/contac",name="getContact",methods={"GET"})
+     * @Route("/clean",name="getClean",methods={"GET"})
      */
     public function getClean (CleanRepository $cleanRepository){
         try {
