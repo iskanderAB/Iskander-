@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProjectRepository")
@@ -13,41 +14,49 @@ class Project
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups("project_read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("project_read")
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=1000)
+     * @Groups("project_read")
      */
     private $discription;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("project_read")
      */
     private $file;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Groups("project_read")
      */
     private $start_date;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Groups("project_read")
      */
     private $end_date;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("project_read")
      */
     private $status;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Pai", inversedBy="projects")
+     * @Groups("project_read")
      */
     private $pai;
 

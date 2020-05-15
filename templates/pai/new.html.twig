@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Pai{% endblock %}
+
+{% block body %}
+    <h1>Create new Pai</h1>
+
+    {{ include('pai/_form.html.twig') }}
+
+    <a href="{{ path('pai_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pai{% endblock %}
+
+{% block body %}
+    <h1>Pai</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pai.id }}</td>
+            </tr>
+            <tr>
+                <th>File</th>
+                <td>{{ pai.file }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('pai_index') }}">back to list</a>
+
+    <a href="{{ path('pai_edit', {'id': pai.id}) }}">edit</a>
+
+    {{ include('pai/_delete_form.html.twig') }}
+{% endblock %}
